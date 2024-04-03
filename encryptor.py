@@ -3,8 +3,11 @@
 # This is a simple python script that aims to encrypt and decrypt files with a key to protect sensitive data
 
 import colorama
+colorama.init()
 from cryptography.fernet import Fernet
 import os
+
+from colorama import Fore, Style
 
 def generate_key():
     key = Fernet.generate_key()
@@ -31,32 +34,32 @@ def decrypt_file(file_name, key):
         decrypted_file.write(decrypted_data)
 
 def main():
-    option = input(f"\n{colorama.Fore.BLUE}What do you want to do? (encrypt, decrypt): {colorama.Style.RESET_ALL}\n").lower()
+    option = input(f"\n{Fore.BLUE}What do you want to do? (encrypt, decrypt): {Style.RESET_ALL}\n").lower()
     if option == "encrypt":
-        file = input(f"\n{colorama.Fore.BLUE}Enter the name of the file to encrypt: {colorama.Style.RESET_ALL}\n")
+        file = input(f"\n{Fore.BLUE}Enter the name of the file to encrypt: {Style.RESET_ALL}\n")
         if os.path.exists(file):
             encrypt_file(file, key)
-            print(f"\n{colorama.Fore.GREEN}File '{file}' encrypted successfully. {colorama.Style.RESET_ALL}\n")
+            print(f"\n{Fore.GREEN}File '{file}' encrypted successfully. {Style.RESET_ALL}\n")
             print("Saved to "+file +".encrypted\n")
-            remove = input(f"{colorama.Fore.YELLOW}Do you want to remove the original file?(y,n) {colorama.Style.RESET_ALL}\n")
+            remove = input(f"{Fore.YELLOW}Do you want to remove the original file?(y,n) {Style.RESET_ALL}\n")
             if remove == "y":
                 os.remove(file)
-                print(f"{colorama.Fore.GREEN}File '{file}' was succesfully deleted {colorama.Style.RESET_ALL}\n")
+                print(f"{Fore.GREEN}File '{file}' was succesfully deleted {Style.RESET_ALL}\n")
             elif remove == "n":
-                print(f"{colorama.Fore.WHITE}Okay, let's keep the original file {colorama.Style.RESET_ALL}\n")
+                print(f"{Fore.WHITE}Okay, let's keep the original file {Style.RESET_ALL}\n")
             else:
-                print(f"{colorama.Fore.RED}There was a problem, try again {colorama.Style.RESET_ALL}\n")
+                print(f"{Fore.RED}There was a problem, try again {Style.RESET_ALL}\n")
         else:
-            print(f"\n{colorama.Fore.RED}The file '{file}' does not exist. {colorama.Style.RESET_ALL}\n")
+            print(f"\n{Fore.RED}The file '{file}' does not exist. {Style.RESET_ALL}\n")
     elif option == "decrypt":
-        file = input(f"\n{colorama.Fore.BLUE}Enter the name of the file to decrypt: {colorama.Style.RESET_ALL}\n")
+        file = input(f"\n{Fore.BLUE}Enter the name of the file to decrypt: {Style.RESET_ALL}\n")
         if os.path.exists(file):
             decrypt_file(file, key)
-            print(f"\n{colorama.Fore.GREEN}File '{file}' decrypted successfully. {colorama.Style.RESET_ALL}\n")
+            print(f"\n{Fore.GREEN}File '{file}' decrypted successfully. {Style.RESET_ALL}\n")
         else:
-            print(f"\n{colorama.Fore.RED}The file '{file}' does not exist. {colorama.Style.RESET_ALL}\n")
+            print(f"\n{Fore.RED}The file '{file}' does not exist. {Style.RESET_ALL}\n")
     else:
-        print(f"\n{colorama.Fore.RED}Invalid option. {colorama.Style.RESET_ALL}\n")
+        print(f"\n{Fore.RED}Invalid option. {Style.RESET_ALL}\n")
 
 if not os.path.exists("key.key"):
     generate_key()
