@@ -38,7 +38,7 @@ def main():
             encrypt_file(file, key)
             print(f"\n{colorama.Fore.GREEN}File '{file}' encrypted successfully. {colorama.Style.RESET_ALL}\n")
             print("Saved to "+file +".encrypted\n")
-            remove = input(f"{colorama.Fore.YELLOW}Do you want to remove the original file? {colorama.Style.RESET_ALL}\n")
+            remove = input(f"{colorama.Fore.YELLOW}Do you want to remove the original file?(y,n) {colorama.Style.RESET_ALL}\n")
             if remove == "y":
                 os.remove(file)
                 print(f"{colorama.Fore.GREEN}File '{file}' was succesfully deleted {colorama.Style.RESET_ALL}\n")
