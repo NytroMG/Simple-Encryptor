@@ -2,4 +2,4 @@ This is a simple script that will help you or your enterprise to keep files with
 
 To use the tool:
 
-pip install -r requeriments.txt
+pip install -r requirements.txt
